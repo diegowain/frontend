@@ -1,5 +1,6 @@
 // src/componentes/ClienteForm.js
 import React, { useState } from 'react';
+import  './estilo.css';
 
 const ClienteForm = ({ onCadastro }) => {
     const [nome, setNome] = useState('');

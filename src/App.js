@@ -1,12 +1,17 @@
 // src/App.js
 import React, { useState } from 'react';
 import ClienteForm from './componentes/ClienteForm.js';
-import PedidoForm from './componentes/PedidoForm.js';
-import PedidoView from './componentes/PedidoView.js';
-import PedidoDelete from './componentes/PedidoDelete.js';
+import FormPedido from './componentes/PedidoForm.js';
+
+
+import ListaPedidos from './tabelas/tabelapedido.js';
 
 function App() {
     const [pedidoVisualizado, setPedidoVisualizado] = useState(null);
+
+    const [atualizar, setAtualizar] = useState(false);
+
+    const atualizarTabela = () => setAtualizar(!atualizar);
 
     const handleCadastroCliente = async (cliente) => {
         try {
@@ -25,7 +30,7 @@ function App() {
         }
     };
 
-    const handleRealizarPedido = async (pedido) => {
+    const handleCadastroPedido = async (pedido) => {
         try {
             const response = await fetch('http://localhost:4000/pedido', {
                 method: 'POST',
@@ -35,27 +40,14 @@ function App() {
                 body: JSON.stringify(pedido),
             });
             const result = await response.json();
-            alert(result.mensagem || 'Pedido realizado com sucesso!');
+            alert(result.mensagem || 'Pedido cadastrado com sucesso!');
         } catch (error) {
-            console.error('Erro ao realizar pedido:', error);
-            alert('Erro ao realizar pedido.');
+            console.error('Erro ao cadastrar pedido:', error);
+            alert('Erro ao cadastrar pedido.');
         }
     };
 
-    const handleVisualizarPedido = async (pedidoId) => {
-        try {
-            const response = await fetch(`http://localhost:4000/pedido/${pedidoId}`);
-            const result = await response.json();
-            if (response.ok) {
-                setPedidoVisualizado(result.pedido);
-            } else {
-                alert(result.mensagem || 'Pedido não encontrado.');
-            }
-        } catch (error) {
-            console.error('Erro ao visualizar pedido:', error);
-            alert('Erro ao visualizar pedido.');
-        }
-    };
+
 
     const handleExcluirPedido = async (pedidoId) => {
         try {
@@ -77,9 +69,9 @@ function App() {
         <div>
             <h1>Sistema de Gestão de Pedidos</h1>
             <ClienteForm onCadastro={handleCadastroCliente} />
-            <PedidoForm onPedido={handleRealizarPedido} />
-            <PedidoView pedido={pedidoVisualizado} onVisualizar={handleVisualizarPedido} />
-            <PedidoDelete onExcluir={handleExcluirPedido} />
+            <FormPedido onCadastro={handleCadastroPedido} onVisualizar={setPedidoVisualizado}/>
+            <ListaPedidos onVisualizar={setPedidoVisualizado} onAtualizar={atualizarTabela} />
+        
         </div>
     );
 }

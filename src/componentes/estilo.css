@@ -1,0 +1,129 @@
+/* Estilos gerais */
+form, .form-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+/* Título dos formulários */
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: Arial, sans-serif;
+}
+
+/* Inputs de texto e telefone */
+input[type="text"], input[type="tel"], input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:focus, input[type="tel"]:focus, input[type="number"]:focus,
+.form-control:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Mensagens de erro */
+input.is-invalid {
+    border-color: #e63946;
+    background-color: #fbe9e9;
+}
+
+.error-message {
+    color: #e63946;
+    font-size: 14px;
+    margin-top: -8px;
+}
+
+/* Botões */
+button, .btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"], .btn-primary {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+button[type="submit"]:hover, .btn-primary:hover {
+    background-color: #45a049;
+}
+
+.btn-danger {
+    background-color: #e63946;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #d62828;
+}
+
+.btn-secondary {
+    background-color: #5c5c5c;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #444;
+}
+
+/* Container de itens de pedidos */
+.container-itens {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+}
+
+.container-itens h5 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Estilos para os itens de pedido */
+.row-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.row-item input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.row-item .btn-danger {
+    margin-left: 10px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .form-container, form {
+        padding: 15px;
+    }
+
+    .row-item {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .row-item .btn-danger {
+        margin: 10px 0 0 0;
+    }
+}
